@@ -1,8 +1,48 @@
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.ArrayList;
 import rec.Recipe;
 
 class DisplayManager{
+//create arraylist for storage
+ArrayList<Recipe> recipeBook = new ArrayList<>();
+
+public void storeRec(Recipe recipe){
+    //store recipe objects in an arraylist
+    
+
+}
+
+public void mainMenu(){
+    System.out.println("Main Menu");
+    System.out.println("===================");
+    System.out.println("1. Create a recipe");
+    System.out.println("2. Search for a recipe");
+    System.out.println("3. Exit");
+    Scanner menuSc = new Scanner(System.in);
+    int choice = menuSc.nextInt();
+    if(choice == 1){
+        System.out.print("\033[H\033[2J"); 
+        Recipe recipe = recipeQuery();
+        displayRecipe(recipe);
+    }
+    else if(choice == 2){
+        System.out.print("\033[H\033[2J");
+        System.out.println("1. Search by Name");
+        System.out.println("2. Search by Ingredient");
+        System.out.println("3. Search by Time");
+        System.out.println("4. Exit");
+       
+
+
+    }
+    else if(choice == 3){
+        System.out.print("\033[H\033[2J"); 
+        System.out.println("Quitting...");
+        System.exit(0);
+    }
+
+}
 
 private Recipe recipeQuery(){
     System.out.println("Enter the recipe name: ");
@@ -71,7 +111,7 @@ public void run() throws IOException{
 public class App{
     public static void main(String[] args) throws Exception {
         DisplayManager displayManager = new DisplayManager();
-        displayManager.run();
+        displayManager.mainMenu();
 
     }
 }

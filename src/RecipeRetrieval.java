@@ -77,27 +77,27 @@ public class RecipeRetrieval {
             System.out.println("2. View all Recipes");
             System.out.println("3. Exit");
             System.out.print("Type 1, 2, or 3: ");
-            int choice = in.nextInt();
+            int option = in.nextInt();
             in.nextLine();
             System.out.println();
 
-            if (choice != 1 && choice != 2 && choice != 3) {
+            if (option != 1 && option != 2 && option != 3) {
                 System.out.println("Try again");
                 System.out.println();
             } else {
                 // if 1, search for recipe
-                if (choice == 1) {
+                if (option == 1) {
                     System.out.print("Recipe Name: ");
-                    String searchName = in.nextLine();
-                    boolean ifFound = searchForRecipe(list, searchName);
-                    if (ifFound) {
+                    String Name = in.nextLine();
+                    boolean found = RecipeSearch(list, Name);
+                    if (found) {
                         System.out.println("Recipe was found!");
                     } else {
                         System.out.println("Error: Recipe not found");
                     }
 
                 // if 2, show all recipes
-                } else if (choice == 2) {
+                } else if (option == 2) {
                     displayAllRecipes(list);
                     System.out.println();
 

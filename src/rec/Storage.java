@@ -6,17 +6,20 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+import rec.Recipe;
 import java.io.FileNotFoundException;
 import rec.DisplayManager;
 
 //serialize and store the recipe objects from the creation class in a csv file
 public class Storage {
 
-    private void read() throws Exception {
+    
+//read the recipe csv file and store the recipes in an arraylist
+    public void readRec() throws Exception{
         File file = new File("src/rec/recipes.csv");
         BufferedReader br = new BufferedReader(new FileReader(file));
         String st;
-        while ((st = br.readLine()) != null) {
+        while ((st = br.readLine()) != null){
             System.out.println(st);
         }
     }
@@ -25,6 +28,7 @@ public class Storage {
         //filewriter adds a recipe to the csv file
         FileWriter writer = new FileWriter("src/rec/recipes.csv");
         List<Recipe> recipeListData = new ArrayList<>();
+        //String[] tempIngredients = recipe.getIngredients();
         writer.write("Recipe Name: " + recipe.getName() + ", Recipe Description: " + recipe.getDescription() + ", Recipe Time: " + recipe.getTime() + ", Recipe Ingredients: " + recipe.getIngredients() + ", Recipe Steps: " + recipe.getSteps());
         //writer.write(recipe.getDescription());
         //writer.write(recipe.getTime());

@@ -49,8 +49,20 @@ public class Recipe {
     public void setSteps(){
         this.steps = steps;
     }
-/* 
-    public String toString(){
 
-    }*/
+    public String ingredientsToString(String[] ingredients){
+        String ingredientsString = "";
+        for(int i = 0; i < this.ingredients.length; i++){
+            ingredientsString += this.ingredients[i] + " @ ";
+        }
+        return ingredientsString;
+    }
+
+    public String stepsToString(String[] steps){
+        String stepsString = "";
+        for(int i = 0; i < this.steps.length; i++){
+            stepsString += this.steps[i] + " @ ";
+        }
+        return stepsString;
+    }
 }

@@ -22,6 +22,7 @@ public class DisplayManager{
         System.out.println("1. Create a recipe");
         System.out.println("2. Search for a recipe");
         System.out.println("3. Exit");
+        System.out.println("4. Test");
         Scanner menuSc = new Scanner(System.in);
         int choice = menuSc.nextInt();
         if(choice == 1){
@@ -39,14 +40,19 @@ public class DisplayManager{
             System.out.println("2. Search by Ingredient");
             System.out.println("3. Search by Time");
             System.out.println("4. Exit");
+            
            
     
     
         }
         else if(choice == 3){
+            storage.readRec();
             System.out.print("\033[H\033[2J"); 
             System.out.println("Quitting...");
             System.exit(0);
+        }
+        else if(choice == 4){
+            storage.readRec();
         }
     
     }

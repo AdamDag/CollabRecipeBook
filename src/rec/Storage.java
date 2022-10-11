@@ -29,7 +29,7 @@ public class Storage {
         FileWriter writer = new FileWriter("src/rec/recipes.csv");
         List<Recipe> recipeListData = new ArrayList<>();
         //String[] tempIngredients = recipe.getIngredients();
-        writer.write("Recipe Name: " + recipe.getName() + ", Recipe Description: " + recipe.getDescription() + ", Recipe Time: " + recipe.getTime() + ", Recipe Ingredients: " + recipe.getIngredients() + ", Recipe Steps: " + recipe.getSteps());
+        writer.write("Recipe Name: " + recipe.getName() + ", Recipe Description: " + recipe.getDescription() + ", Recipe Time: " + recipe.getTime() + ", Recipe Ingredients: " + recipe.ingredientsToString(recipe.getIngredients()) + ", Recipe Steps: " + recipe.stepsToString(recipe.getSteps()));
         //writer.write(recipe.getDescription());
         //writer.write(recipe.getTime());
         //writer.write(recipe.getIngredients().toString());

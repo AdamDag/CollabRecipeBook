@@ -8,7 +8,7 @@ import rec.*;
 public class DisplayManager{
     //create arraylist for storage
     ArrayList<Recipe> recipeBook = new ArrayList<>();
-    Storage storage = new Storage();
+    SerializationManager ser = new SerializationManager();
     
     public void storeRec(Recipe recipe){
         //store recipe objects in an arraylist
@@ -30,7 +30,7 @@ public class DisplayManager{
             Recipe recipe = recipeQuery();
             //displayRecipe(recipe);
             storeRec(recipe);
-            storage.writeRec(recipe);
+            ser.serialize(recipe);
             //printAllRecipes();
             //System.out.println(recipe.getSteps().toString());
         }
@@ -46,13 +46,13 @@ public class DisplayManager{
     
         }
         else if(choice == 3){
-            storage.readRec();
+            //storage.readRec();
             System.out.print("\033[H\033[2J"); 
             System.out.println("Quitting...");
             System.exit(0);
         }
         else if(choice == 4){
-            storage.readRec();
+            //storage.readRec();
         }
     
     }

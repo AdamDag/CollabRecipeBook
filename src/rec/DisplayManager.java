@@ -1,20 +1,16 @@
 package rec;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Scanner;
 import java.util.ArrayList;
 import rec.*;
 
-public class DisplayManager{
+public class DisplayManager implements Serializable {   
     //create arraylist for storage
-    ArrayList<Recipe> recipeBook = new ArrayList<>();
+    RecipeBook recipeBook = new RecipeBook();
     SerializationManager ser = new SerializationManager();
     
-    public void storeRec(Recipe recipe){
-        //store recipe objects in an arraylist
-       recipeBook.add(recipe);
-    
-    }
     
     public void mainMenu() throws Exception{
         System.out.println("Main Menu");
@@ -29,8 +25,9 @@ public class DisplayManager{
             System.out.print("\033[H\033[2J"); 
             Recipe recipe = recipeQuery();
             //displayRecipe(recipe);
-            storeRec(recipe);
-            ser.serialize(recipe);
+            //storeRec(recipe);
+            recipeBook.addRecipe(recipe);
+            SerializationManager.serialize(recipeBook);
             //printAllRecipes();
             //System.out.println(recipe.getSteps().toString());
         }
@@ -53,6 +50,11 @@ public class DisplayManager{
         }
         else if(choice == 4){
             //storage.readRec();
+            System.out.print(SerializationManager.deserialize());
+           //recipeBook.printRecipe(0);
+           System.out.println("Test 13");
+            //System.out.println("Quitting...");
+            //System.exit(0);
         }
     
     }
@@ -69,7 +71,7 @@ public class DisplayManager{
         int recipeIngredients = scanner.nextInt();
         scanner.nextLine();
         //create an array of Strings to store the ingredients
-        String[] ingredients = new String[recipeIngredients];
+        ArrayList<String> ingredients = new ArrayList<String>();
          for(int i = 0; i < recipeIngredients; i++){
             System.out.println("Enter the ingredient name: ");
             String ingredientName = scanner.nextLine();
@@ -78,7 +80,7 @@ public class DisplayManager{
             System.out.println("Enter the ingredient unit: ");
             String ingredientUnit = scanner.nextLine();
     
-            ingredients[i] = ingredientName + " " + ingredientQuantity + " " + ingredientUnit;
+            ingredients.add(ingredientName + " " + ingredientQuantity + " " + ingredientUnit);
     
          }
     
@@ -86,13 +88,13 @@ public class DisplayManager{
         int recipeSteps = scanner.nextInt();
         scanner.nextLine();
         //create an array of Strings to store the steps
-        String[] steps = new String[recipeSteps];
+        ArrayList <String> steps = new ArrayList<String>();
         for(int i = 0; i < recipeSteps; i++){
             
             String stepNumber = "Step " + (i + 1) + ": ";
             System.out.println("Enter the step description: ");
             String stepDescription = scanner.nextLine();
-            steps[i] = stepNumber + " " + stepDescription;
+            steps.add(stepNumber + " " + stepDescription);
         }
     
         Recipe recipe = new Recipe(recipeName, recipeDescription, recipeTime, ingredients, steps);
@@ -100,6 +102,7 @@ public class DisplayManager{
         return recipe;
     
     }
+    /* 
     private void displayRecipe(Recipe recipe){
         System.out.println("Recipe name: " + recipe.getName());
         System.out.println("Recipe description: " + recipe.getDescription());
@@ -113,11 +116,11 @@ public class DisplayManager{
             System.out.println(recipe.getSteps()[i]);
         }
     }
-
+*/
     private void printAllRecipes(){
-        for(int i = 0; i < recipeBook.size(); i++){
-            displayRecipe(recipeBook.get(i));
-        }
+        //for(int i = 0; i < recipeBook.size(); i++){
+         //   displayRecipe(recipeBook.get(i));
+      //  }
     }
 /* 
     public void run() throws IOException{

@@ -14,12 +14,15 @@ public class DisplayManager implements Serializable {
     
     public void mainMenu() throws Exception{
         while(true){
+        System.out.println(" ");
+        System.out.println("Welcome to the Recipe Book!");
         System.out.println("Main Menu");
         System.out.println("===================");
         System.out.println("1. Create a recipe");
         System.out.println("2. Search for a recipe");
         System.out.println("3. Exit");
         System.out.println("4. Test");
+        System.out.println("===================");
         Scanner menuSc = new Scanner(System.in);
         int choice = menuSc.nextInt();
         if(choice == 1){

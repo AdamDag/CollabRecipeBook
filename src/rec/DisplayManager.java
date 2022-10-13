@@ -24,10 +24,10 @@ public class DisplayManager implements Serializable {
         int choice = menuSc.nextInt();
         if(choice == 1){
             System.out.print("\033[H\033[2J");
-            if(SerializationManager.deserialize().getSize() != 0){
+            if(SerializationManager.deserialize() != null || SerializationManager.deserialize().getSize()!=0){
                 recipeBook = SerializationManager.deserialize();
             }
-            else{
+           else{
                 recipeBook = new RecipeBook();
             }
             Recipe recipe = recipeQuery();
@@ -60,7 +60,7 @@ public class DisplayManager implements Serializable {
             //storage.readRec();
             System.out.print(SerializationManager.deserialize());
            //recipeBook.printRecipe(0);
-           System.out.println("Test 13");
+           //System.out.println("Test 13");
             //System.out.println("Quitting...");
             //System.exit(0);
         }

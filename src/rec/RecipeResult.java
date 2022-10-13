@@ -3,7 +3,7 @@ package rec;
 public class RecipeResult extends Recipe implements Comparable<RecipeResult> {
 	private int matching;
 	
-	public RecipeResult(String name, String description, String time, String[] ingredients, String[] steps) {
+	public RecipeResult(String name, String description, String time, ArrayList<String> ingredients, ArrayList<String> steps) {
 		super(name, description, time, ingredients, steps);
 		// TODO Auto-generated constructor stub
 	}

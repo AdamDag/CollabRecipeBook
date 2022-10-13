@@ -64,7 +64,11 @@ public class DisplayManager implements Serializable {
             //System.out.println("Quitting...");
             //System.exit(0);
         }
+        else{
+            System.out.println("Invalid input, please try again");
         }
+        }
+        
     }
     
     private Recipe recipeQuery(){

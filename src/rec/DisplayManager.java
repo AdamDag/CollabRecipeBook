@@ -13,6 +13,7 @@ public class DisplayManager implements Serializable {
     
     
     public void mainMenu() throws Exception{
+        while(true){
         System.out.println("Main Menu");
         System.out.println("===================");
         System.out.println("1. Create a recipe");
@@ -22,7 +23,13 @@ public class DisplayManager implements Serializable {
         Scanner menuSc = new Scanner(System.in);
         int choice = menuSc.nextInt();
         if(choice == 1){
-            System.out.print("\033[H\033[2J"); 
+            System.out.print("\033[H\033[2J");
+            if(SerializationManager.deserialize().getSize() != 0){
+                recipeBook = SerializationManager.deserialize();
+            }
+            else{
+                recipeBook = new RecipeBook();
+            }
             Recipe recipe = recipeQuery();
             //displayRecipe(recipe);
             //storeRec(recipe);
@@ -44,6 +51,7 @@ public class DisplayManager implements Serializable {
         }
         else if(choice == 3){
             //storage.readRec();
+
             System.out.print("\033[H\033[2J"); 
             System.out.println("Quitting...");
             System.exit(0);
@@ -56,7 +64,7 @@ public class DisplayManager implements Serializable {
             //System.out.println("Quitting...");
             //System.exit(0);
         }
-    
+        }
     }
     
     private Recipe recipeQuery(){

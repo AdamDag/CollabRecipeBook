@@ -43,4 +43,8 @@ private static final long serialVersionUID = 1L;
     }
     return recipeBookString;
   }
+
+public int getSize(){
+    return this.recipeBook.size();
+  }
 }

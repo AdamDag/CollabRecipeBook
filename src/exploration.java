@@ -31,6 +31,9 @@ public class exploration extends Recipe{
 	}
 	
 	public static void displayList ( ArrayList<Recipe> recipes ) {
+		if (recipes.size()<=0) {
+			System.out.println("The result is empty");
+		}
 		for (int i = recipes.size()-1; i >= 0; i-- ) {
 			System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 			displayRecipe(recipes.get(i));
@@ -96,9 +99,9 @@ public class exploration extends Recipe{
 	}
 	
 
-	public ArrayList<Recipe> browse ( String target, ArrayList<Recipe> source ){
+	public static ArrayList<Recipe> browse ( ArrayList<Recipe> source ){
 		ArrayList<Recipe> result = new ArrayList<Recipe>();
-		for (int i = 0; i < source.size()-1; i++) {
+		for (int i = 0; i <= source.size()-1; i++) {
 			//filter by requirement
 			if (true) {
 				result.add(source.get(i));
@@ -108,7 +111,25 @@ public class exploration extends Recipe{
 		return result;
 	}
 	
+	private static String recipeToString(Recipe recipe){
+		String recipeString = "";
+		recipeString += "Name:\n" + recipe.getName() + "\n";
+		recipeString += "Description:\n" + recipe.getDescription() + "\n";
+		recipeString += "Time:\n" + recipe.getTime() + "\n";
+		recipeString += "Ingredients:\n";
+	    for(int i = 0; i < recipe.getIngredients().length; i++){
+	    	recipeString += recipe.getIngredients()[i] + "\n";
+	    }
+	    recipeString += "Steps:\n";
+	    for(int i = 0; i < recipe.getSteps().length; i++){
+	    	recipeString += recipe.getSteps()[i] + "\n";
+	    }
+	    return recipeString;
+	}
+	
 	public static void main(String[] args) {
+		
+		
 		// TODO Auto-generated method stub
 		ArrayList<Recipe> firstThree = new ArrayList<Recipe>();
 		
@@ -128,8 +149,13 @@ public class exploration extends Recipe{
 		firstThree.add(fruitSalad);
 		
 		
-		ArrayList<RecipeResult> search = searchByIngredient("yogurt",firstThree);
-		displayList(convertToRecipes(search));
+		//ArrayList<RecipeResult> search = searchByName("name",firstThree);
+		//ArrayList<RecipeResult> search = searchByIngredient("yogurt",firstThree);
+		//ArrayList<Recipe> search = browse(firstThree);
+		//displayList(search);
+		//displayList(convertToRecipes(search));
+		
+		System.out.println(recipeToString(fruitSalad));
 	}
 }
 

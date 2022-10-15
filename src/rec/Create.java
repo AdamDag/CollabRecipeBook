@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -20,12 +21,12 @@ public class Create extends JFrame implements Serializable{
 	private JLabel lblNewLabel_1;
 	private JTextField textField_1;
 	private JLabel lblNewLabel_2;
-	private JTextField textField_2;
+	private JTextArea textField_2;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
-	private JButton btnNewButton_10;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	private JButton btnNewButton_10;
 
 	/**
 	 * Launch the application.
@@ -60,7 +61,7 @@ public class Create extends JFrame implements Serializable{
 		contentPane.add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(101, 30, 360, 29);
+		textField.setBounds(112, 35, 360, 29);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
@@ -69,7 +70,7 @@ public class Create extends JFrame implements Serializable{
 		contentPane.add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(101, 169, 360, 46);
+		textField_1.setBounds(112, 169, 360, 46);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -77,8 +78,8 @@ public class Create extends JFrame implements Serializable{
 		lblNewLabel_2.setBounds(32, 226, 109, 29);
 		contentPane.add(lblNewLabel_2);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(101, 226, 466, 318);
+		textField_2 = new JTextArea();
+		textField_2.setBounds(112, 226, 466, 318);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
@@ -97,7 +98,7 @@ public class Create extends JFrame implements Serializable{
 		contentPane.add(lblNewLabel_3);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(101, 68, 360, 57);
+		textField_3.setBounds(112, 70, 360, 57);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
@@ -106,7 +107,7 @@ public class Create extends JFrame implements Serializable{
 		contentPane.add(lblNewLabel_4);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(101, 138, 109, 20);
+		textField_4.setBounds(112, 138, 109, 20);
 		contentPane.add(textField_4);
 		textField_4.setColumns(10);
 		
@@ -119,11 +120,15 @@ public class Create extends JFrame implements Serializable{
 				String Description = textField_3.getText();
 				String ingridients = textField_1.getText();
 				String steps = textField_2.getText();
+				steps = steps.replaceAll("\\n", "");
 				String recipeTime = textField_4.getText();
 				
 				Recipe recipe = recipeQuery(name, Description, recipeTime, ingridients, steps);
 				recipeBook.addRecipe(recipe);
 	            SerializationManager.serialize(recipeBook);
+	            
+	            new Cover().setVisible(true);
+				Create.this.dispose();
 				//* Store into Data Base*//
 			}
 		});
@@ -155,11 +160,11 @@ public class Create extends JFrame implements Serializable{
 		
 		String str2 = ""; 
         for (int i = 0; i < recipe.getIngredients().size(); i++) {
-            str2 += recipe.getSteps().get(i);
+            str2 += recipe.getIngredients().get(i);
             str2 += ", ";
         }
 		
-		textField_1 = new JTextField();
+		textField_1 = new JTextField(str2);
 		textField_1.setBounds(101, 169, 360, 46);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
@@ -175,7 +180,7 @@ public class Create extends JFrame implements Serializable{
 		contentPane.add(btnNewButton_10);
 		
 		String str = recipe.getSteps().get(0);
-		textField_2 = new JTextField(str);
+		textField_2 = new JTextArea(str);
 		textField_2.setBounds(101, 226, 466, 318);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
@@ -185,13 +190,14 @@ public class Create extends JFrame implements Serializable{
 			btnNewButton_10.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = recipe.getSteps().get(final_i);
-						textField_2 = new JTextField(str);
+						textField_2 = new JTextArea(str);
 						textField_2.setBounds(101, 226, 466, 318);
 						contentPane.add(textField_2);
 						textField_2.setColumns(10);
 				}
 			});
 		}
+		
 		
 		btnNewButton_1 = new JButton("HOME");
 		btnNewButton_1.addActionListener(new ActionListener() {

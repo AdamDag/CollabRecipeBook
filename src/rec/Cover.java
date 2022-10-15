@@ -78,7 +78,7 @@ public class Cover extends JFrame {
 		btnNewButton_1.setBounds(203, 324, 195, 36);
 		contentPane.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Iterate Reciepes");
+		JButton btnNewButton_2 = new JButton("All Reciepes");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new Iterate().setVisible(true);

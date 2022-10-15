@@ -1,5 +1,7 @@
 package rec;
 
+import java.util.ArrayList;
+
 public class RecipeResult extends Recipe implements Comparable<RecipeResult> {
 	private int matching;
 	

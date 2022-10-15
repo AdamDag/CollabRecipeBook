@@ -15,10 +15,6 @@ public class exploration{
 	public exploration() {
 		// TODO Auto-generated constructor stub
 	}
-
-	private static final long serialVersionUID = 1L;
-	
-	private static ArrayList<Recipe> source = SerializationManager.deserialize().getRecipeBook();
 	
 	
 	public static ArrayList<Recipe> convertToRecipes ( ArrayList<RecipeResult> results ) {
@@ -32,6 +28,7 @@ public class exploration{
 	
 	
 	public static ArrayList<Recipe> searchByName ( String target ){
+		ArrayList<Recipe> source = SerializationManager.deserialize().getRecipeBook();
 		String[] targets = target.split(" ");
 		ArrayList<RecipeResult> result = new ArrayList<RecipeResult>();
 		for (int i = source.size()-1; i >= 0; i--) {
@@ -60,16 +57,21 @@ public class exploration{
 	
 	
 	public static ArrayList<Recipe> searchByIngredient ( String target ){
-		
+		ArrayList<Recipe> source = SerializationManager.deserialize().getRecipeBook();
 		ArrayList<RecipeResult> result = new ArrayList<RecipeResult>();
 		for (int i = source.size()-1; i >= 0; i--) {
-			//look for string matching in recipe name
+			//look at ingredients in this recipe
 			ArrayList<String> ingredientsFound = source.get(i).getIngredients();
 			int countMatch = 0;
-			//check if any 2 words match
+				//check for every word in the ingredient element
 				for (int k = 0; k <= ingredientsFound.size()-1; k++) {
-					if (target.equals(ingredientsFound.get(k))) {
-						countMatch ++;
+					//split string
+					String[] ingredients = ingredientsFound.get(k).split(" ");
+					//check if any 2 words match
+					for (int j = 0; j <= ingredients.length-1; j++) {
+						if (ingredients[j].equals(target)) {
+							countMatch ++;
+						}
 					}
 				}
 			if (countMatch > 0) {
@@ -86,6 +88,7 @@ public class exploration{
 	
 
 	public static ArrayList<Recipe> browse ( ){
+		ArrayList<Recipe> source = SerializationManager.deserialize().getRecipeBook();
 		ArrayList<Recipe> result = new ArrayList<Recipe>();
 		for (int i = source.size()-1; i >= 0; i--) {
 			//filter by requirement
@@ -97,26 +100,6 @@ public class exploration{
 		return result;
 	}
 
-	
-	
-	
-	/*
-	public String recipeToString(Recipe recipe){
-		String recipeString = "";
-		recipeString += "Name:\n" + recipe.getName() + "\n";
-		recipeString += "Description:\n" + recipe.getDescription() + "\n";
-		recipeString += "Time:\n" + recipe.getTime() + "\n";
-		recipeString += "Ingredients:\n";
-	    for(int i = 0; i < recipe.getIngredients().size(); i++){
-	    	recipeString += recipe.getIngredients().get(i) + "\n";
-	    }
-	    recipeString += "Steps:\n";
-	    for(int i = 0; i < recipe.getSteps().size(); i++){
-	    	recipeString += recipe.getSteps().get(i) + "\n";
-	    }
-	    return recipeString;
-	}
-	*/
 	
 }
 

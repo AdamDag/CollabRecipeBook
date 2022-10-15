@@ -11,19 +11,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class exploration extends Recipe{
-	public exploration(String name, String description, String time, ArrayList<String> ingredients,
-			ArrayList<String> steps) {
-		super(name, description, time, ingredients, steps);
+public class exploration{
+	public exploration() {
 		// TODO Auto-generated constructor stub
 	}
 
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<Recipe> source = SerializationManager.deserialize().getRecipeBook();
+	private static ArrayList<Recipe> source = SerializationManager.deserialize().getRecipeBook();
 	
 	
-	public ArrayList<Recipe> convertToRecipes ( ArrayList<RecipeResult> results ) {
+	public static ArrayList<Recipe> convertToRecipes ( ArrayList<RecipeResult> results ) {
 		ArrayList<Recipe> converted = new ArrayList<Recipe>();
 		for (int i = 0; i <= results.size()-1; i++ ) {
 			RecipeResult next = results.get(i);
@@ -33,12 +31,12 @@ public class exploration extends Recipe{
 	}
 	
 	
-	public ArrayList<Recipe> searchByName ( String target ){
+	public static ArrayList<Recipe> searchByName ( String target ){
 		String[] targets = target.split(" ");
 		ArrayList<RecipeResult> result = new ArrayList<RecipeResult>();
-		for (int i = this.source.size()-1; i >= 0; i--) {
+		for (int i = source.size()-1; i >= 0; i--) {
 			//look for string matching in recipe name
-			String[] nameFound = this.source.get(i).getName().split(" ");
+			String[] nameFound = source.get(i).getName().split(" ");
 			int countMatch = 0;
 			//check if any 2 words match
 			for (int j = 0; j <= targets.length-1; j++) {
@@ -49,7 +47,7 @@ public class exploration extends Recipe{
 				}
 			}
 			if (countMatch > 0) {
-				result.add(new RecipeResult(this.source.get(i),countMatch));
+				result.add(new RecipeResult(source.get(i),countMatch));
 			}
 		}
 		// sort on # of matches
@@ -61,12 +59,12 @@ public class exploration extends Recipe{
 	
 	
 	
-	public ArrayList<Recipe> searchByIngredient ( String target ){
+	public static ArrayList<Recipe> searchByIngredient ( String target ){
 		
 		ArrayList<RecipeResult> result = new ArrayList<RecipeResult>();
-		for (int i = this.source.size()-1; i >= 0; i--) {
+		for (int i = source.size()-1; i >= 0; i--) {
 			//look for string matching in recipe name
-			ArrayList<String> ingredientsFound = this.source.get(i).getIngredients();
+			ArrayList<String> ingredientsFound = source.get(i).getIngredients();
 			int countMatch = 0;
 			//check if any 2 words match
 				for (int k = 0; k <= ingredientsFound.size()-1; k++) {
@@ -75,7 +73,7 @@ public class exploration extends Recipe{
 					}
 				}
 			if (countMatch > 0) {
-				result.add(new RecipeResult(this.source.get(i),countMatch));
+				result.add(new RecipeResult(source.get(i),countMatch));
 			}
 		}
 		// sort on # of matches
@@ -87,12 +85,12 @@ public class exploration extends Recipe{
 	
 	
 
-	public ArrayList<Recipe> browse ( ){
+	public static ArrayList<Recipe> browse ( ){
 		ArrayList<Recipe> result = new ArrayList<Recipe>();
-		for (int i = this.source.size()-1; i >= 0; i--) {
+		for (int i = source.size()-1; i >= 0; i--) {
 			//filter by requirement
 			if (true) {
-				result.add(this.source.get(i));
+				result.add(source.get(i));
 			}
 		}
 		//displayList(result);

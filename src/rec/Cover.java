@@ -68,14 +68,14 @@ public class Cover extends JFrame {
 		btnNewButton.setBounds(41, 324, 152, 36);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Search Reciepe");
+		JButton btnNewButton_1 = new JButton("Search By Name");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new Search().setVisible(true);
 				Cover.this.dispose();
 			}
 		});
-		btnNewButton_1.setBounds(226, 324, 152, 36);
+		btnNewButton_1.setBounds(203, 324, 195, 36);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Iterate Reciepes");
@@ -102,5 +102,15 @@ public class Cover extends JFrame {
 		lblNewLabel_2.setBackground(Color.BLUE);
 		lblNewLabel_2.setBounds(10, 67, 564, 181);
 		contentPane.add(lblNewLabel_2);
+		
+		JButton btnNewButton_4 = new JButton("Search By Ingridient");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Search(2).setVisible(true);
+				Cover.this.dispose();
+			}
+		});
+		btnNewButton_4.setBounds(203, 387, 195, 36);
+		contentPane.add(btnNewButton_4);
 	}
 }

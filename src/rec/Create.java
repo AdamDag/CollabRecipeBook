@@ -23,6 +23,7 @@ public class Create extends JFrame implements Serializable{
 	private JTextField textField_2;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
+	private JButton btnNewButton_10;
 	private JTextField textField_3;
 	private JTextField textField_4;
 
@@ -168,15 +169,29 @@ public class Create extends JFrame implements Serializable{
 		contentPane.add(lblNewLabel_2);
 		recipe.getSteps();
 		
-		String str = ""; 
-        for (int i = 0; i < recipe.getSteps().size(); i++) {
-            str += recipe.getSteps().get(i);
-            str += "\n";
-        }
+		//Show steps one by one instead of all at once
+		btnNewButton_10 = new JButton("NEXT");
+		btnNewButton_10.setBounds(14, 250, 80, 23);
+		contentPane.add(btnNewButton_10);
+		
+		String str = recipe.getSteps().get(0);
 		textField_2 = new JTextField(str);
 		textField_2.setBounds(101, 226, 466, 318);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
+
+		for (int i = 1; i < recipe.getSteps().size(); i++) {
+			final int final_i = i;
+			btnNewButton_10.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String str = recipe.getSteps().get(final_i);
+						textField_2 = new JTextField(str);
+						textField_2.setBounds(101, 226, 466, 318);
+						contentPane.add(textField_2);
+						textField_2.setColumns(10);
+				}
+			});
+		}
 		
 		btnNewButton_1 = new JButton("HOME");
 		btnNewButton_1.addActionListener(new ActionListener() {

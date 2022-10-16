@@ -78,7 +78,7 @@ public class Cover extends JFrame {
 		btnNewButton_1.setBounds(203, 324, 195, 36);
 		contentPane.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("All Reciepes");
+		JButton btnNewButton_2 = new JButton("All Recipes");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new Iterate().setVisible(true);
@@ -103,7 +103,7 @@ public class Cover extends JFrame {
 		lblNewLabel_2.setBounds(10, 67, 564, 181);
 		contentPane.add(lblNewLabel_2);
 		
-		JButton btnNewButton_4 = new JButton("Search By Ingridient");
+		JButton btnNewButton_4 = new JButton("Search By Ingredient");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new Search(2).setVisible(true);

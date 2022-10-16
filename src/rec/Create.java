@@ -154,7 +154,7 @@ public class Create extends JFrame implements Serializable{
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		lblNewLabel_1 = new JLabel("Ingridients:");
+		lblNewLabel_1 = new JLabel("Ingredients:");
 		lblNewLabel_1.setBounds(32, 169, 109, 29);
 		contentPane.add(lblNewLabel_1);
 		

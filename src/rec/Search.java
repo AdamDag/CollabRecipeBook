@@ -44,7 +44,7 @@ public class Search extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Rearch Recipe Name:");
+		JLabel lblNewLabel = new JLabel("Search Recipe Name:");
 		lblNewLabel.setBounds(34, 170, 133, 38);
 		contentPane.add(lblNewLabel);
 		
